@@ -1,0 +1,210 @@
+/* ——————————————————————————————————————
+   SOUFFLE — design « heure bleue »
+   bg nuit, encre lunaire, accent flamme
+—————————————————————————————————————— */
+:root{
+  --bg:#0F131B;
+  --bg-2:#161D29;
+  --bg-3:#1D2533;
+  --ink:#EAE6DB;
+  --muted:#8B93A3;
+  --flame:#E0A458;
+  --flame-soft:rgba(224,164,88,.14);
+  --sage:#7FA08C;
+  --line:rgba(234,230,219,.09);
+  --radius:18px;
+  --font-d:'Marcellus',serif;
+  --font-b:'Karla',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-b);
+  font-weight:300;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  min-height:100dvh;
+}
+#view{
+  max-width:680px;
+  margin:0 auto;
+  padding:28px 22px calc(96px + env(safe-area-inset-bottom));
+  animation:viewIn .45s ease both;
+}
+@keyframes viewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3{font-family:var(--font-d);font-weight:400;line-height:1.25;letter-spacing:.01em}
+h1{font-size:2rem}
+h2{font-size:1.4rem}
+h3{font-size:1.15rem}
+p{color:var(--ink)}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--flame);margin-bottom:10px;font-weight:500;
+}
+.section{margin-top:36px}
+.divider{height:1px;background:var(--line);margin:28px 0}
+
+/* ——— Halo : élément signature ——— */
+.halo-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;padding:26px 0}
+.halo{
+  width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(circle at 50% 45%,
+    rgba(224,164,88,.55) 0%,
+    rgba(224,164,88,.18) 38%,
+    rgba(224,164,88,.05) 62%,
+    transparent 72%);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  transition:transform .3s ease;
+}
+.halo::after{
+  content:'';position:absolute;inset:24%;
+  border-radius:50%;
+  border:1px solid rgba(234,230,219,.22);
+}
+.halo.idle{animation:idleBreath 7s ease-in-out infinite}
+@keyframes idleBreath{0%,100%{transform:scale(.96)}50%{transform:scale(1.04)}}
+.halo .halo-label{
+  font-family:var(--font-d);font-size:1.05rem;text-align:center;
+  color:var(--ink);z-index:1;padding:0 30px;
+}
+@media (prefers-reduced-motion: reduce){
+  .halo.idle{animation:none}
+  #view{animation:none}
+}
+
+/* ——— Cartes ——— */
+.card{
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:20px 22px;
+  margin-top:14px;
+  display:block;
+  transition:border-color .25s ease, background .25s ease;
+}
+a.card:hover,a.card:focus-visible{border-color:rgba(224,164,88,.45);background:var(--bg-3)}
+a.card:focus-visible{outline:2px solid var(--flame);outline-offset:2px}
+.card-row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.card .meta{font-size:.8rem;color:var(--muted);letter-spacing:.04em}
+.card.locked{opacity:.45}
+.card.done{border-color:rgba(127,160,140,.4)}
+.tag{
+  display:inline-block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 10px;border-radius:99px;border:1px solid var(--line);color:var(--muted);
+}
+.tag.flame{color:var(--flame);border-color:rgba(224,164,88,.4)}
+.tag.sage{color:var(--sage);border-color:rgba(127,160,140,.4)}
+
+/* ——— Boutons ——— */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--font-b);font-size:1rem;font-weight:500;
+  padding:13px 28px;border-radius:99px;cursor:pointer;
+  border:1px solid transparent;
+  background:var(--flame);color:#171207;
+  transition:opacity .2s ease,transform .15s ease;
+}
+.btn:hover{opacity:.9}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--muted)}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+
+/* ——— Stats / streak ——— */
+.stats{display:flex;gap:12px;margin-top:18px}
+.stat{
+  flex:1;background:var(--bg-2);border:1px solid var(--line);
+  border-radius:var(--radius);padding:14px;text-align:center;
+}
+.stat b{font-family:var(--font-d);font-size:1.5rem;font-weight:400;display:block;color:var(--flame)}
+.stat span{font-size:.75rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+/* ——— Calendrier 56 jours ——— */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:16px}
+.cal .d{
+  aspect-ratio:1;border-radius:9px;display:flex;align-items:center;justify-content:center;
+  font-size:.74rem;color:var(--muted);background:var(--bg-2);border:1px solid var(--line);
+}
+.cal .d.done{background:var(--flame-soft);border-color:rgba(224,164,88,.45);color:var(--flame)}
+.cal .d.today{border-color:var(--ink);color:var(--ink)}
+
+/* ——— Player ——— */
+.player{display:flex;flex-direction:column;align-items:center;text-align:center;min-height:72dvh;justify-content:center;gap:8px}
+.player .step-text{
+  font-family:var(--font-d);font-size:1.3rem;line-height:1.5;
+  max-width:34ch;min-height:5.5em;display:flex;align-items:center;justify-content:center;
+  transition:opacity .6s ease;
+}
+.player .step-text.fade{opacity:0}
+.player .silence-dots{color:var(--muted);font-size:1.6rem;letter-spacing:.5em}
+.progress{
+  width:min(420px,86vw);height:3px;background:var(--bg-3);border-radius:99px;overflow:hidden;margin-top:22px;
+}
+.progress i{display:block;height:100%;background:var(--flame);width:0;transition:width 1s linear}
+.player .time{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.85rem;margin-top:10px;letter-spacing:.08em}
+.player .controls{display:flex;gap:12px;margin-top:26px}
+
+/* halo en mode respiration guidée */
+.halo.breath{transition:transform var(--phase-d,4s) cubic-bezier(.45,0,.55,1)}
+.halo.inhale{transform:scale(1.32)}
+.halo.exhale{transform:scale(.88)}
+.halo.hold{}
+.phase-label{font-size:.95rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);min-height:1.4em}
+.phase-count{font-family:var(--font-d);font-size:2.4rem;color:var(--ink);min-height:1.2em;font-variant-numeric:tabular-nums}
+
+/* ——— Journal / humeur ——— */
+.mood-row{display:flex;gap:10px;justify-content:center;margin:14px 0}
+.mood-row button{
+  width:52px;height:52px;border-radius:50%;border:1px solid var(--line);
+  background:var(--bg-2);font-size:1.4rem;cursor:pointer;transition:all .2s ease;
+}
+.mood-row button:hover{border-color:var(--muted)}
+.mood-row button.sel{border-color:var(--flame);background:var(--flame-soft);transform:scale(1.1)}
+textarea{
+  width:100%;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);
+  color:var(--ink);font-family:var(--font-b);font-size:1rem;padding:14px;min-height:90px;resize:vertical;
+}
+textarea:focus-visible{outline:2px solid var(--flame);outline-offset:1px}
+
+/* ——— Guide / articles ——— */
+.article p{margin-top:14px;color:#d6d2c7}
+.article ul{margin:12px 0 0 20px;color:#d6d2c7}
+.article li{margin-top:8px}
+.article strong{color:var(--ink);font-weight:600}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.back:hover{color:var(--ink)}
+
+/* ——— Barre d'onglets ——— */
+.tabbar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(15,19,27,.92);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  display:flex;justify-content:space-around;
+  padding:10px 6px calc(10px + env(safe-area-inset-bottom));
+  z-index:50;
+}
+.tabbar a{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:.68rem;letter-spacing:.04em;color:var(--muted);
+  padding:4px 10px;border-radius:12px;
+}
+.tabbar a .tab-ic{font-size:1.15rem;line-height:1}
+.tabbar a.active{color:var(--flame)}
+.tabbar a:focus-visible{outline:2px solid var(--flame);outline-offset:2px}
+
+@media(max-width:420px){
+  body{font-size:16px}
+  h1{font-size:1.7rem}
+  .halo{width:165px;height:165px}
+}
