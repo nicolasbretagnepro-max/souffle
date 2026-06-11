@@ -6,11 +6,15 @@
 /* ——— État (localStorage) ——— */
 const STORE_KEY = 'souffle.v1';
 const State = {
-  data: { done: {}, slot: null, startedAt: null },
+  data: { done: {}, slot: null, startedAt: null, informalDone: {} },
   load(){
     try{
       const raw = localStorage.getItem(STORE_KEY);
-      if(raw) this.data = Object.assign(this.data, JSON.parse(raw));
+      if(raw){
+        const parsed = JSON.parse(raw);
+        this.data = Object.assign(this.data, parsed);
+        if(!this.data.informalDone) this.data.informalDone = {};
+      }
     }catch(e){}
   },
   save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(this.data)); }catch(e){} },
@@ -24,7 +28,7 @@ const State = {
 function todayISO(){ return new Date().toISOString().slice(0,10); }
 function currentDay(){
   for(let i = 0; i < 56; i++) if(!State.data.done[i]) return i;
-  return 56; // programme terminé
+  return 56;
 }
 function alreadyDoneToday(){
   return Object.values(State.data.done).some(e => e.date === todayISO());
@@ -34,7 +38,7 @@ function streak(){
   if(dates.size === 0) return 0;
   let count = 0;
   const d = new Date();
-  if(!dates.has(d.toISOString().slice(0,10))) d.setDate(d.getDate() - 1); // tolère "pas encore aujourd'hui"
+  if(!dates.has(d.toISOString().slice(0,10))) d.setDate(d.getDate() - 1);
   while(dates.has(d.toISOString().slice(0,10))){
     count++; d.setDate(d.getDate() - 1);
   }
@@ -58,18 +62,21 @@ function navigate(){
   const base = '/' + (parts[0] || 'accueil');
   const param = parts[1];
   (routes[base] || routes['/accueil'])(param);
-  // onglet actif
   document.querySelectorAll('.tabbar a').forEach(a => {
     const tab = a.dataset.tab;
-    const activeMap = { '/accueil':'accueil','/programme':'programme','/semaine':'programme','/seance':'accueil',
-      '/respiration':'respiration','/breath':'respiration','/sos':'sos','/guide':'guide','/journal':'accueil' };
+    const activeMap = {
+      '/accueil':'accueil','/programme':'programme','/semaine':'programme',
+      '/seance':'accueil','/seance-courte':'accueil',
+      '/respiration':'respiration','/breath':'respiration',
+      '/sos':'sos','/guide':'guide','/journal':'accueil'
+    };
     a.classList.toggle('active', activeMap[base] === tab);
   });
   window.scrollTo(0,0);
 }
 window.addEventListener('hashchange', navigate);
 
-/* ——— Moteurs actifs (à arrêter en changeant de vue) ——— */
+/* ——— Moteurs actifs ——— */
 let timers = [];
 function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
 function every(fn, ms){ timers.push(setInterval(fn, ms)); }
@@ -83,6 +90,8 @@ route('/accueil', () => {
   const w = PROGRAM[week];
   const doneToday = alreadyDoneToday();
   const nb = Object.keys(State.data.done).length;
+  const informalText = INFORMAL_BY_WEEK[week][day % 7];
+  const informalDone = !!(State.data.informalDone && State.data.informalDone[todayISO()]);
 
   let hero;
   if(finished){
@@ -96,11 +105,22 @@ route('/accueil', () => {
         <div class="halo idle"><div class="halo-label">Jour ${day+1}<br><span class="small muted">Semaine ${week+1} · ${esc(w.theme)}</span></div></div>
         ${doneToday
           ? `<span class="tag sage">Séance du jour accomplie ✓</span>`
-          : `<a class="btn" href="#/seance" onclick="Gong.unlock()">Commencer · ${w.minutes} min</a>`}
+          : `<div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+               <a class="btn" href="#/seance" onclick="Gong.unlock()">Commencer · ${w.minutes} min</a>
+               <a href="#/seance-courte" onclick="Gong.unlock()" style="font-size:.85rem;color:var(--muted);text-decoration:underline;cursor:pointer">Version courte · 5 min</a>
+             </div>`}
       </div>
       <div class="card">
         <p class="eyebrow">Focus du jour</p>
         <p>${esc(DAILY_FOCUS[day % 7])}</p>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <p class="eyebrow" style="color:var(--sage)">Pratique informelle</p>
+        <p style="margin-bottom:14px">${esc(informalText)}</p>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+          <input type="checkbox" id="informal-check" ${informalDone?'checked':''} style="width:20px;height:20px;accent-color:var(--flame);cursor:pointer;flex-shrink:0">
+          <span style="font-size:.85rem;color:var(--muted)">Fait aujourd'hui</span>
+        </label>
       </div>`;
   }
 
@@ -130,6 +150,14 @@ route('/accueil', () => {
     <div class="section">
       <a class="card card-row" href="#/journal"><span>Journal de pratique</span><span class="muted">→</span></a>
     </div>`;
+
+  const infCb = document.getElementById('informal-check');
+  if(infCb) infCb.addEventListener('change', () => {
+    if(!State.data.informalDone) State.data.informalDone = {};
+    if(infCb.checked) State.data.informalDone[todayISO()] = true;
+    else delete State.data.informalDone[todayISO()];
+    State.save();
+  });
 
   view.querySelectorAll('[data-slot]').forEach(b => b.addEventListener('click', () => {
     State.data.slot = b.dataset.slot; State.save(); navigate();
@@ -183,7 +211,12 @@ route('/semaine', (i) => {
       </div>
     </div>
     ${isCurrent && !alreadyDoneToday()
-      ? `<div class="section"><a class="btn block" href="#/seance" onclick="Gong.unlock()">Commencer la séance du jour</a></div>`
+      ? `<div class="section">
+           <a class="btn block" href="#/seance" onclick="Gong.unlock()">Commencer la séance du jour</a>
+           <div style="text-align:center;margin-top:10px">
+             <a href="#/seance-courte" onclick="Gong.unlock()" style="font-size:.85rem;color:var(--muted);text-decoration:underline;cursor:pointer">Version courte · 5 min</a>
+           </div>
+         </div>`
       : ''}
     ${!isCurrent && wi < curWeek
       ? `<div class="section"><button class="btn ghost block" id="replay">Rejouer cette séance (hors programme)</button></div>` : ''}`;
@@ -196,7 +229,6 @@ route('/seance', () => {
   const day = currentDay();
   if(day >= 56){ location.hash = '#/accueil'; return; }
   const w = PROGRAM[Math.floor(day/7)];
-  // Écran d'avant-séance : humeur
   view.innerHTML = `
     <a class="back" href="#/accueil">← Annuler</a>
     <div style="text-align:center;margin-top:8vh">
@@ -210,7 +242,33 @@ route('/seance', () => {
     </div>`;
   view.querySelectorAll('#moods button').forEach(b => b.addEventListener('click', () => {
     Gong.unlock();
-    startPlayer(w.script, w.theme, { day, before: parseInt(b.dataset.v,10), prompt: w.journalPrompt });
+    startPlayer(w.script, w.theme, {
+      day, before: parseInt(b.dataset.v,10), prompt: w.journalPrompt, deepDive: w.deepDive, isShort: false
+    });
+  }));
+});
+
+/* ═══════════════ SÉANCE COURTE ═══════════════ */
+route('/seance-courte', () => {
+  const day = currentDay();
+  if(day >= 56){ location.hash = '#/accueil'; return; }
+  const w = PROGRAM[Math.floor(day/7)];
+  view.innerHTML = `
+    <a class="back" href="#/accueil">← Annuler</a>
+    <div style="text-align:center;margin-top:8vh">
+      <p class="eyebrow">Jour ${day+1} · ${esc(w.theme)} · 5 min</p>
+      <h1>Version courte</h1>
+      <p class="muted" style="margin-top:10px">L'essentiel en 5 minutes.<br>Mieux vaut une courte pratique que pas de pratique.</p>
+      <p class="muted small" style="margin-top:16px">Comment vous sentez-vous, là, maintenant ?</p>
+      <div class="mood-row" id="moods">
+        ${['😣','😕','😐','🙂','😌'].map((m,i)=>`<button data-v="${i+1}">${m}</button>`).join('')}
+      </div>
+    </div>`;
+  view.querySelectorAll('#moods button').forEach(b => b.addEventListener('click', () => {
+    Gong.unlock();
+    startPlayer(w.shortScript, w.theme, {
+      day, before: parseInt(b.dataset.v,10), prompt: w.journalPrompt, deepDive: w.deepDive, isShort: true
+    });
   }));
 });
 
@@ -292,7 +350,7 @@ function startPlayer(script, title, journalCtx){
 function showJournal(ctx){
   view.innerHTML = `
     <div style="text-align:center;margin-top:6vh">
-      <p class="eyebrow">Séance terminée</p>
+      <p class="eyebrow">${ctx.isShort ? 'Version courte · 5 min' : 'Séance terminée'}</p>
       <h1>Et maintenant ?</h1>
       <p class="muted" style="margin-top:10px">Comment vous sentez-vous après la séance ?</p>
       <div class="mood-row" id="moodsAfter">
@@ -313,9 +371,34 @@ function showJournal(ctx){
   }));
   document.getElementById('jsave').addEventListener('click', () => {
     State.completeDay(ctx.day, ctx.before, after, document.getElementById('jnote').value.trim());
-    location.hash = '#/accueil';
-    navigate();
+    if(ctx.deepDive){
+      showDeepDive(ctx.deepDive, ctx.isShort);
+    } else {
+      location.hash = '#/accueil';
+      navigate();
+    }
   });
+}
+
+/* ——— Écran "Pour aller plus loin" ——— */
+function showDeepDive(deepDive, isShort){
+  view.innerHTML = `
+    <div style="text-align:center;margin-top:6vh">
+      ${isShort
+        ? `<p class="eyebrow" style="color:var(--sage)">Pratique partielle</p>
+           <h1>C'est toujours mieux que rien</h1>
+           <p class="muted" style="margin-top:8px;margin-bottom:24px">Cinq minutes de présence valent mieux que zéro.<br>Le jour est validé.</p>`
+        : `<p class="eyebrow" style="color:var(--sage)">Séance accomplie</p>
+           <h1>Bien joué</h1>
+           <p class="muted" style="margin-top:8px;margin-bottom:24px">Pendant que les effets s'installent,<br>une idée pour aller plus loin.</p>`}
+      <div class="card" style="text-align:left">
+        <p class="eyebrow">Pour aller plus loin</p>
+        <h3 style="margin-bottom:10px">${esc(deepDive.headline)}</h3>
+        <p class="muted small" style="line-height:1.65">${esc(deepDive.insight)}</p>
+        <a href="#/guide/${deepDive.guideId}" style="display:inline-block;margin-top:16px;font-size:.85rem;color:var(--flame);text-decoration:underline">Lire l'article complet →</a>
+      </div>
+      <a class="btn ghost block" href="#/accueil" style="margin-top:20px">Retour à l'accueil</a>
+    </div>`;
 }
 
 /* ═══════════════ JOURNAL ═══════════════ */
