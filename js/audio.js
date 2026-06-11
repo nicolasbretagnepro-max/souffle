@@ -1,4 +1,6 @@
-/* SOUFFLE — gong synthétisé (Web Audio API, aucun fichier audio requis) */
+/* SOUFFLE — audio : gong synthétisé + guidage vocal (Web Speech API) */
+
+/* ——— Gong ——— */
 const Gong = (() => {
   let ctx = null;
   function ensure(){
@@ -6,7 +8,6 @@ const Gong = (() => {
     if(ctx.state === 'suspended') ctx.resume();
     return ctx;
   }
-  /* Un gong = plusieurs partiels inharmoniques avec décroissance lente */
   function strike(base = 110, gain = 0.5, dur = 6){
     try{
       const c = ensure();
@@ -27,12 +28,75 @@ const Gong = (() => {
         o.connect(g); g.connect(master);
         o.start(now); o.stop(now + dur);
       });
-    }catch(e){ /* audio indisponible : silence */ }
+    }catch(e){}
   }
   return {
-    start(){ strike(98, 0.4, 7); },               // gong grave d'ouverture
-    end(){ strike(98, 0.4, 7); setTimeout(()=>strike(98, 0.3, 7), 2400); }, // double gong de clôture
-    soft(){ strike(196, 0.18, 3.5); },            // ponctuation discrète
-    unlock(){ ensure(); }                          // à appeler sur geste utilisateur (iOS)
+    start(){ strike(98, 0.4, 7); },
+    end(){ strike(98, 0.4, 7); setTimeout(()=>strike(98, 0.3, 7), 2400); },
+    soft(){ strike(196, 0.18, 3.5); },
+    unlock(){ ensure(); }
   };
+})();
+
+/* ——— Guidage vocal ——— */
+const Voice = (() => {
+  const STORE = 'souffle.voice';
+  let _on = false;
+
+  /* Chargement des voix — asynchrone sur iOS */
+  let _voices = [];
+  function _loadVoices(){
+    _voices = ('speechSynthesis' in window) ? speechSynthesis.getVoices() : [];
+  }
+  _loadVoices();
+  if('speechSynthesis' in window && 'onvoiceschanged' in speechSynthesis){
+    speechSynthesis.onvoiceschanged = _loadVoices;
+  }
+
+  /* Sélection de la meilleure voix française féminine disponible */
+  function _bestVoice(){
+    const all = ('speechSynthesis' in window) ? speechSynthesis.getVoices() : [];
+    /* Noms iOS courants en priorité */
+    const priority = ['Amélie','Audrey','Marie','Virginie','Alice'];
+    for(const n of priority){
+      const v = all.find(v => v.name.includes(n));
+      if(v) return v;
+    }
+    /* Fallback : n'importe quelle voix fr */
+    return all.find(v => v.lang.startsWith('fr')) || null;
+  }
+
+  function speak(text){
+    if(!_on || !text || !('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang    = 'fr-FR';
+    u.rate    = 0.82;   /* rythme méditatif */
+    u.pitch   = 1.05;
+    u.volume  = 1.0;
+    const v = _bestVoice();
+    if(v) u.voice = v;
+    speechSynthesis.speak(u);
+  }
+
+  function stop(){
+    if('speechSynthesis' in window) speechSynthesis.cancel();
+  }
+
+  function init(){
+    _on = localStorage.getItem(STORE) === '1';
+  }
+
+  function toggle(){
+    _on = !_on;
+    localStorage.setItem(STORE, _on ? '1' : '0');
+    if(!_on) stop();
+    return _on;
+  }
+
+  function supported(){
+    return 'speechSynthesis' in window;
+  }
+
+  return { get on(){ return _on; }, init, toggle, speak, stop, supported };
 })();

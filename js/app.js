@@ -80,7 +80,38 @@ window.addEventListener('hashchange', navigate);
 let timers = [];
 function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
 function every(fn, ms){ timers.push(setInterval(fn, ms)); }
-function stopEngines(){ timers.forEach(t => { clearTimeout(t); clearInterval(t); }); timers = []; }
+function stopEngines(){
+  timers.forEach(t => { clearTimeout(t); clearInterval(t); });
+  timers = [];
+  Voice.stop();
+}
+
+/* ——— Bouton voix (helper réutilisé) ——— */
+function voiceToggleHTML(){
+  if(!Voice.supported()) return '';
+  return `
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px">
+      <span style="font-size:.85rem;color:var(--muted)">Guidage vocal</span>
+      <button id="voice-pre-toggle"
+        style="border:1.5px solid ${Voice.on ? 'var(--flame)' : 'var(--line)'};
+               background:${Voice.on ? 'var(--flame-soft)' : 'transparent'};
+               color:${Voice.on ? 'var(--flame)' : 'var(--muted)'};
+               border-radius:99px;padding:6px 16px;font-size:.85rem;cursor:pointer;transition:.2s">
+        ${Voice.on ? '🔊 Activé' : '🔇 Désactivé'}
+      </button>
+    </div>`;
+}
+function bindVoicePreToggle(){
+  const btn = document.getElementById('voice-pre-toggle');
+  if(!btn) return;
+  btn.addEventListener('click', () => {
+    Voice.toggle();
+    btn.style.borderColor = Voice.on ? 'var(--flame)' : 'var(--line)';
+    btn.style.background  = Voice.on ? 'var(--flame-soft)' : 'transparent';
+    btn.style.color       = Voice.on ? 'var(--flame)' : 'var(--muted)';
+    btn.textContent       = Voice.on ? '🔊 Activé' : '🔇 Désactivé';
+  });
+}
 
 /* ═══════════════ ACCUEIL ═══════════════ */
 route('/accueil', () => {
@@ -118,7 +149,8 @@ route('/accueil', () => {
         <p class="eyebrow" style="color:var(--sage)">Pratique informelle</p>
         <p style="margin-bottom:14px">${esc(informalText)}</p>
         <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
-          <input type="checkbox" id="informal-check" ${informalDone?'checked':''} style="width:20px;height:20px;accent-color:var(--flame);cursor:pointer;flex-shrink:0">
+          <input type="checkbox" id="informal-check" ${informalDone?'checked':''}
+            style="width:20px;height:20px;accent-color:var(--flame);cursor:pointer;flex-shrink:0">
           <span style="font-size:.85rem;color:var(--muted)">Fait aujourd'hui</span>
         </label>
       </div>`;
@@ -158,7 +190,6 @@ route('/accueil', () => {
     else delete State.data.informalDone[todayISO()];
     State.save();
   });
-
   view.querySelectorAll('[data-slot]').forEach(b => b.addEventListener('click', () => {
     State.data.slot = b.dataset.slot; State.save(); navigate();
   }));
@@ -221,7 +252,7 @@ route('/semaine', (i) => {
     ${!isCurrent && wi < curWeek
       ? `<div class="section"><button class="btn ghost block" id="replay">Rejouer cette séance (hors programme)</button></div>` : ''}`;
   const rp = document.getElementById('replay');
-  if(rp) rp.addEventListener('click', () => { Gong.unlock(); startPlayer(w.script, w.theme, null); });
+  if(rp) rp.addEventListener('click', () => { Gong.unlock(); startPlayer(w.script, w.theme, null, w.scriptOral); });
 });
 
 /* ═══════════════ SÉANCE DU JOUR ═══════════════ */
@@ -238,13 +269,15 @@ route('/seance', () => {
       <div class="mood-row" id="moods">
         ${['😣','😕','😐','🙂','😌'].map((m,i)=>`<button data-v="${i+1}">${m}</button>`).join('')}
       </div>
-      <p class="muted small">Casque ou pièce calme conseillés. Le gong marque le début et la fin.</p>
+      ${voiceToggleHTML()}
+      <p class="muted small" style="margin-top:16px">Le gong marque le début et la fin.</p>
     </div>`;
+  bindVoicePreToggle();
   view.querySelectorAll('#moods button').forEach(b => b.addEventListener('click', () => {
     Gong.unlock();
     startPlayer(w.script, w.theme, {
       day, before: parseInt(b.dataset.v,10), prompt: w.journalPrompt, deepDive: w.deepDive, isShort: false
-    });
+    }, w.scriptOral);
   }));
 });
 
@@ -263,17 +296,20 @@ route('/seance-courte', () => {
       <div class="mood-row" id="moods">
         ${['😣','😕','😐','🙂','😌'].map((m,i)=>`<button data-v="${i+1}">${m}</button>`).join('')}
       </div>
+      ${voiceToggleHTML()}
     </div>`;
+  bindVoicePreToggle();
   view.querySelectorAll('#moods button').forEach(b => b.addEventListener('click', () => {
     Gong.unlock();
     startPlayer(w.shortScript, w.theme, {
       day, before: parseInt(b.dataset.v,10), prompt: w.journalPrompt, deepDive: w.deepDive, isShort: true
-    });
+    }, null);
   }));
 });
 
 /* ——— Player générique (séances + SOS) ——— */
-function startPlayer(script, title, journalCtx){
+/* scriptOral : version orale optionnelle. Si fourni et Voice.on, la voix lit scriptOral[i].t */
+function startPlayer(script, title, journalCtx, scriptOral){
   stopEngines();
   const total = scriptDuration(script);
   let elapsed = 0, stepIdx = -1, stepElapsed = 0, paused = false;
@@ -286,24 +322,33 @@ function startPlayer(script, title, journalCtx){
       <div class="progress"><i id="pbar"></i></div>
       <div class="time" id="ptime">${fmtTime(total)}</div>
       <div class="controls">
+        ${Voice.supported()
+          ? `<button class="btn ghost" id="pvoice" style="min-width:52px">${Voice.on ? '🔊' : '🔇'}</button>`
+          : ''}
         <button class="btn ghost" id="ppause">Pause</button>
         <button class="btn ghost" id="pstop">Arrêter</button>
       </div>
     </div>`;
 
   const elText = document.getElementById('stepText');
-  const elBar = document.getElementById('pbar');
+  const elBar  = document.getElementById('pbar');
   const elTime = document.getElementById('ptime');
 
   Gong.start();
 
   function showStep(i){
     const s = script[i];
+    const oral = scriptOral && scriptOral[i];
     elText.classList.add('fade');
     later(() => {
       elText.innerHTML = s.t ? esc(s.t) : `<span class="silence-dots">· · ·</span>`;
       elText.classList.remove('fade');
-      if(!s.t) Gong.soft();
+      if(!s.t){
+        Gong.soft();
+      } else {
+        /* Lire le texte oral si disponible, sinon le texte visuel en fallback */
+        Voice.speak((oral && oral.t) ? oral.t : s.t);
+      }
     }, 600);
   }
 
@@ -321,10 +366,18 @@ function startPlayer(script, title, journalCtx){
   every(tick, 1000);
   tick();
 
+  /* Toggle voix dans le player */
+  const pvoice = document.getElementById('pvoice');
+  if(pvoice) pvoice.addEventListener('click', () => {
+    Voice.toggle();
+    pvoice.textContent = Voice.on ? '🔊' : '🔇';
+  });
+
   document.getElementById('ppause').addEventListener('click', e => {
     paused = !paused;
     e.target.textContent = paused ? 'Reprendre' : 'Pause';
     document.getElementById('phalo').classList.toggle('idle', !paused);
+    if(paused) Voice.stop();
   });
   document.getElementById('pstop').addEventListener('click', () => {
     stopEngines();
@@ -371,12 +424,7 @@ function showJournal(ctx){
   }));
   document.getElementById('jsave').addEventListener('click', () => {
     State.completeDay(ctx.day, ctx.before, after, document.getElementById('jnote').value.trim());
-    if(ctx.deepDive){
-      showDeepDive(ctx.deepDive, ctx.isShort);
-    } else {
-      location.hash = '#/accueil';
-      navigate();
-    }
+    ctx.deepDive ? showDeepDive(ctx.deepDive, ctx.isShort) : (location.hash = '#/accueil', navigate());
   });
 }
 
@@ -411,7 +459,9 @@ route('/journal', () => {
     <a class="back" href="#/accueil">← Accueil</a>
     <p class="eyebrow">Journal</p>
     <h1>Votre pratique</h1>
-    ${entries.length === 0 ? `<p class="muted" style="margin-top:14px">Le journal se remplit à chaque séance terminée. Il vous montrera, semaine après semaine, l'effet de la pratique sur votre état.</p>` : ''}
+    ${entries.length === 0
+      ? `<p class="muted" style="margin-top:14px">Le journal se remplit à chaque séance terminée.</p>`
+      : ''}
     ${entries.map(e => `
       <div class="card">
         <p class="meta">Jour ${e.i+1} · Semaine ${Math.floor(e.i/7)+1} · ${e.date}</p>
@@ -450,10 +500,10 @@ route('/breath', (id) => {
       </div>
     </div>`;
 
-  const halo = document.getElementById('bhalo');
+  const halo    = document.getElementById('bhalo');
   const phaseEl = document.getElementById('bphase');
   const countEl = document.getElementById('bcount');
-  const cyclesEl = document.getElementById('bcycles');
+  const cyclesEl= document.getElementById('bcycles');
 
   document.getElementById('bstart').addEventListener('click', function(){
     Gong.unlock(); Gong.soft();
@@ -516,7 +566,7 @@ routes['/sos'] = (id) => {
   const s = SOS.find(x => x.id === id);
   if(!s){ location.hash = '#/sos'; return; }
   Gong.unlock();
-  startPlayer(s.script, s.name, null);
+  startPlayer(s.script, s.name, null, null);
 };
 
 /* ═══════════════ GUIDE ═══════════════ */
@@ -544,4 +594,5 @@ route('/guide', (id) => {
 
 /* ——— Démarrage ——— */
 State.load();
+Voice.init();
 navigate();

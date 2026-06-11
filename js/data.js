@@ -26,6 +26,20 @@ const PROGRAM = [
     {d:75},
     {t:"Respirez plus amplement. Bougez doucement. Ouvrez les yeux.",d:25}
   ],
+  scriptOral:[
+    {t:"Installez-vous confortablement. Le dos droit, sans rigidité. Fermez les yeux.",d:35},
+    {t:"Prenez trois grandes respirations. Inspirez lentement par le nez. Et soufflez longuement.",d:35},
+    {t:"Laissez maintenant le souffle revenir à son rythme naturel. Vous n'avez rien à modifier, rien à réussir.",d:35},
+    {t:"Portez l'attention sur les sensations du souffle. L'air frais aux narines. Le ventre qui se soulève. Qui redescend.",d:45},
+    {d:60},
+    {t:"Votre esprit va s'échapper, vers une pensée, un son, un projet. C'est normal. Quand vous le remarquez, revenez doucement au souffle.",d:45},
+    {d:90},
+    {t:"Chaque retour au souffle est une répétition. C'est l'exercice lui-même, pas une erreur.",d:30},
+    {d:90},
+    {t:"Élargissez l'attention. Le souffle. Le corps entier ici. Les sons autour de vous.",d:40},
+    {d:60},
+    {t:"Prenez une respiration plus ample. Bougez doucement. Ouvrez les yeux.",d:35}
+  ],
   script:[
     {t:"Installez-vous confortablement. Le dos droit, mais sans rigidité — digne et détendu à la fois. Fermez les yeux, ou posez le regard au sol devant vous.",d:40},
     {t:"Prenez trois grandes respirations. Inspirez par le nez… expirez longuement par la bouche, comme un soupir.",d:30},
@@ -62,6 +76,25 @@ const PROGRAM = [
     {t:"Le visage : front, mâchoire. Relâchez. Le corps entier, vivant et respirant.",d:35},
     {d:45},
     {t:"Étirez-vous si vous en avez besoin. Ouvrez les yeux.",d:20}
+  ],
+  scriptOral:[
+    {t:"Installez-vous, assis ou allongé. Laissez le corps se déposer. Lourd. Soutenu.",d:35},
+    {t:"Trois respirations profondes pour marquer le début.",d:30},
+    {t:"Portez l'attention sur les pieds. Les orteils. La plante. Le contact avec le sol. Chaleur, fourmillement, ou rien du tout.",d:50},
+    {d:40},
+    {t:"Remontez vers les jambes. Les mollets. Les genoux. Les cuisses. Sentez leur poids.",d:40},
+    {d:40},
+    {t:"Le bassin. Le ventre. Observez le mouvement de la respiration, comme une vague lente.",d:40},
+    {d:40},
+    {t:"La poitrine. Le dos. Les épaules. Si vous repérez une tension, respirez vers elle.",d:40},
+    {d:45},
+    {t:"Les bras. Les coudes. Les mains. Jusqu'au bout des doigts.",d:35},
+    {d:40},
+    {t:"Le cou. La mâchoire. Relâchez. Le front. Les yeux reposent.",d:35},
+    {d:40},
+    {t:"Percevez maintenant le corps comme un tout. Vivant. Respirant.",d:35},
+    {d:50},
+    {t:"Reprenez contact avec la pièce. Ouvrez les yeux à votre rythme.",d:30}
   ],
   script:[
     {t:"Installez-vous, assis ou allongé. Laissez le corps se déposer, lourd, soutenu par le sol.",d:40},
@@ -103,6 +136,23 @@ const PROGRAM = [
     {d:90},
     {t:"Ce geste — l'expiration longue — est disponible à tout moment, partout.",d:30},
     {t:"Laissez la respiration retrouver son rythme. Bougez, ouvrez les yeux.",d:25}
+  ],
+  scriptOral:[
+    {t:"Installez-vous, le dos droit. Posez une main sur le ventre, l'autre sur la poitrine.",d:30},
+    {t:"Observez votre respiration telle qu'elle est. Quelle main bouge le plus ?",d:40},
+    {d:30},
+    {t:"Inspirez par le nez en gonflant doucement le ventre. La main du bas se soulève. Celle du haut, à peine.",d:45},
+    {t:"Expirez lentement. Le ventre redescend. Continuez à ce rythme.",d:35},
+    {d:60},
+    {t:"Allongez maintenant l'expiration. Inspirez sur quatre temps. Expirez sur six. Le souffle sort fin, régulier.",d:50},
+    {d:90},
+    {t:"Si compter vous crispe, laissez les chiffres. Gardez simplement une expiration plus longue que l'inspiration.",d:35},
+    {d:90},
+    {t:"Remarquez l'effet dans le corps. Les épaules. La mâchoire. Le rythme du coeur.",d:40},
+    {d:60},
+    {t:"Laissez la respiration retrouver son rythme naturel. Restez avec cette sensation.",d:35},
+    {d:40},
+    {t:"Bougez doucement. Ouvrez les yeux. Cette expiration longue est désormais disponible à tout moment.",d:35}
   ],
   script:[
     {t:"Installez-vous, le dos droit. Posez une main sur le ventre, l'autre sur la poitrine.",d:35},
