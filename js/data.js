@@ -549,10 +549,15 @@ const GUIDE = [
     teaser:"La régularité bat l'intensité — comment tenir 8 semaines.",
     body:[
       "La variable la plus prédictive de réussite n'est ni la durée des séances ni la technique : c'est la régularité. Dix minutes par jour transforment plus que trente minutes le dimanche.",
-      "<strong>Ancrez la séance à une habitude existante.</strong> La méthode la plus fiable : « après [habitude déjà installée], je médite ». Après le café du matin, après le brossage de dents du soir, en rentrant du travail avant d'ouvrir un écran. Le déclencheur fait le travail à votre place.",
-      "<strong>Même heure, même lieu.</strong> Un coin dédié — un coussin, une chaise, toujours les mêmes — réduit la friction de démarrage à presque zéro. La décision est déjà prise.",
-      "<strong>La règle des deux minutes.</strong> Les jours sans énergie, autorisez-vous une séance de deux minutes au lieu de zéro. Ce qui compte est de ne pas casser la chaîne : l'identité « je suis quelqu'un qui médite chaque jour » se construit par la présence, pas par la performance.",
-      "<strong>Ratez un jour, jamais deux.</strong> Un jour manqué est un accident ; deux jours, le début d'une nouvelle habitude — celle de ne pas pratiquer. Le lendemain d'un jour raté est le jour le plus important du programme."
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">L'ancrage comportemental</h3>",
+      "<strong>Ancrez la séance à une habitude existante.</strong> La méthode la plus fiable : « après [habitude déjà installée], je médite ». Après le café du matin, après le brossage de dents du soir, en rentrant du travail avant d'ouvrir un écran. Le déclencheur fait le travail à votre place — la décision est déjà prise.",
+      "Soyez précis : « après le café » est un ancrage. « Le matin » n'en est pas un. Plus l'ancre est concrète et déjà automatique, plus elle sera fiable.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Le cadre physique</h3>",
+      "<strong>Même heure, même lieu.</strong> Un coin dédié — un coussin, une chaise, toujours les mêmes — réduit la friction de démarrage à presque zéro. Quand vous vous asseyez à cet endroit, le corps commence déjà à se préparer.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Quand ça déraille</h3>",
+      "<strong>La règle des deux minutes.</strong> Les jours sans énergie, autorisez-vous deux minutes au lieu de zéro. L'identité « je suis quelqu'un qui médite chaque jour » se construit par la présence, pas par la performance.",
+      "<strong>Ratez un jour, jamais deux.</strong> Un jour manqué est un accident ; deux jours, le début d'une nouvelle habitude — celle de ne pas pratiquer. Le lendemain d'un jour raté est le jour le plus important du programme.",
+      "<div style=\"margin-top:24px;padding:16px 20px;border-radius:14px;border:1px solid rgba(224,164,88,.3);background:rgba(224,164,88,.08)\"><p style=\"font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--flame);margin-bottom:8px;font-weight:500\">À retenir</p><p style=\"color:var(--ink);line-height:1.65\">Un déclencheur fait le travail de la motivation. Trouvez le vôtre, tenez-vous-y, ratez un jour — jamais deux.</p></div>"
     ]
   },
   {
@@ -560,11 +565,18 @@ const GUIDE = [
     title:"La posture",
     teaser:"Digne et détendu : les réglages qui changent tout.",
     body:[
-      "La posture n'est pas un dogme : c'est un outil. Une bonne posture maintient la vigilance (on ne s'endort pas) tout en permettant le relâchement (on ne lutte pas). La formule à retenir : <strong>digne et détendu</strong>.",
-      "<strong>Sur une chaise</strong> — l'option recommandée pour débuter : pieds à plat au sol, dos décollé du dossier, mains posées sur les cuisses. La colonne s'allonge comme si un fil tirait le sommet du crâne vers le haut.",
-      "<strong>Au sol</strong> : asseyez-vous sur le bord d'un coussin ferme, genoux plus bas que les hanches. Sans cela, le dos s'arrondit et la séance devient une lutte.",
-      "<strong>Allongé</strong> : réservez cette position au scan corporel et aux séances du soir — le risque d'endormissement est réel. Bras le long du corps, paumes vers le ciel.",
-      "Les yeux : fermés pour l'intériorité, mi-clos posés au sol si la somnolence guette. La mâchoire desserrée, la langue détendue. Et si une douleur apparaît en séance : bougez. La méditation n'est pas un concours d'immobilité."
+      "La posture n'est pas un dogme : c'est un outil. Une bonne posture maintient la vigilance tout en permettant le relâchement. La formule à retenir : <strong>digne et détendu</strong>.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Sur une chaise — recommandé pour débuter</h3>",
+      "Pieds à plat au sol, dos décollé du dossier, mains posées sur les cuisses. La colonne s'allonge comme si un fil tirait le sommet du crâne vers le haut. C'est la position la plus accessible et la plus polyvalente.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Au sol</h3>",
+      "Asseyez-vous sur le bord d'un coussin ferme, genoux plus bas que les hanches. Sans coussin surélevé, le dos s'arrondit et la séance devient une lutte contre la douleur, pas une pratique.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Allongé — plus de cas que vous ne le pensez</h3>",
+      "L'allongé est souvent présenté comme une position de dernier recours, risquant l'endormissement. En réalité, il est adapté à plusieurs contextes : le scan corporel (semaine 2), toutes les séances du soir, la semaine 7 sur la détente et le sommeil, et n'importe quelle séance si une douleur au dos le justifie. Bras le long du corps, paumes vers le ciel.",
+      "<strong>S'endormir n'est pas un échec.</strong> Lors des séances du soir, glisser vers le sommeil est le signe que la pratique a fonctionné.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Les réglages fins</h3>",
+      "Les yeux : fermés pour l'intériorité, mi-clos posés au sol si la somnolence guette. La mâchoire desserrée, la langue détendue contre le bas du palais. Les épaules qui tombent naturellement.",
+      "<strong>Si une douleur apparaît en séance : bougez.</strong> Ajuster la position n'interrompt pas la méditation — lutter contre une douleur en serrant les dents, si. La méditation n'est pas un concours d'immobilité.",
+      "<div style=\"margin-top:24px;padding:16px 20px;border-radius:14px;border:1px solid rgba(224,164,88,.3);background:rgba(224,164,88,.08)\"><p style=\"font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--flame);margin-bottom:8px;font-weight:500\">À retenir</p><p style=\"color:var(--ink);line-height:1.65\">Digne et détendu. Assise, allongée, sur une chaise ou au sol — la bonne posture est celle qui tient sans douleur. Si vous avez mal : bougez.</p></div>"
     ]
   },
   {
@@ -572,12 +584,20 @@ const GUIDE = [
     title:"Les erreurs fréquentes",
     teaser:"Ce qui fait abandonner — et comment l'éviter.",
     body:[
-      "<strong>« Je n'arrive pas à faire le vide. »</strong> Personne n'y arrive : ce n'est pas l'objectif. La méditation n'est pas l'absence de pensées, c'est le changement de relation avec elles. Un esprit qui s'échappe cinquante fois offre cinquante occasions de s'entraîner.",
-      "<strong>Juger ses séances.</strong> Il n'existe pas de « bonne » ou de « mauvaise » séance. Les séances agitées sont souvent celles qui entraînent le plus — comme les répétitions difficiles en sport.",
-      "<strong>Attendre des résultats immédiats.</strong> Les effets se mesurent en semaines, et apparaissent d'abord en dehors des séances : un agacement qui retombe plus vite, un endormissement plus facile, un moment de recul avant de répondre.",
-      "<strong>Pratiquer uniquement quand ça va mal.</strong> La méditation est un entraînement, pas un médicament d'urgence. C'est la pratique des jours calmes qui rend disponibles les ressources des jours difficiles.",
-      "<strong>En faire trop, trop vite.</strong> Passer de zéro à trente minutes par jour est le meilleur moyen d'abandonner en dix jours. Le programme augmente progressivement : faites-lui confiance.",
-      "<strong>Vérifier en permanence « si ça marche ».</strong> Observer ses progrès toutes les trente secondes est précisément le contraire de la pratique. Pratiquez, et laissez le bilan au journal de fin de séance."
+      "Ces six erreurs représentent la majorité des abandons en première et deuxième semaine. Les reconnaître ne les empêche pas toujours — mais ça aide à ne pas les interpréter comme des signes que « la méditation n'est pas pour soi ».",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">« Je n'arrive pas à faire le vide »</h3>",
+      "Personne n'y arrive : ce n'est pas l'objectif. La méditation n'est pas l'absence de pensées, c'est le changement de relation avec elles. Un esprit qui s'échappe cinquante fois offre cinquante occasions de s'entraîner. <strong>À la place :</strong> dès qu'une pensée apparaît, notez mentalement « penser » — sans la juger — et revenez au souffle. C'est exactement l'exercice.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Juger ses séances</h3>",
+      "Il n'existe pas de « bonne » ou de « mauvaise » séance. Les séances agitées sont souvent celles qui entraînent le plus — comme les répétitions difficiles en sport. <strong>À la place :</strong> à la fin de chaque séance, notez une seule chose que vous avez remarquée. Pas si c'était « bien » — juste ce que vous avez observé.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Attendre des résultats immédiats</h3>",
+      "Les effets se mesurent en semaines, et apparaissent d'abord en dehors des séances : un agacement qui retombe plus vite, un endormissement plus facile, un moment de recul avant de répondre. <strong>À la place :</strong> lisez le guide « Comment savoir qu'on progresse ? » et utilisez le journal pour tracer votre humeur avant/après chaque séance.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Pratiquer uniquement quand ça va mal</h3>",
+      "La méditation est un entraînement, pas un médicament d'urgence. C'est la pratique des jours calmes qui rend disponibles les ressources des jours difficiles. <strong>À la place :</strong> ancrez la séance à un moment fixe, quelle que soit votre humeur du moment. Le module SOS existe pour les urgences — il ne remplace pas la pratique régulière.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">En faire trop, trop vite</h3>",
+      "Passer de zéro à trente minutes par jour est le meilleur moyen d'abandonner en dix jours. Le programme augmente progressivement : faites-lui confiance. <strong>À la place :</strong> si une séance semble trop longue, utilisez la version courte (5 min). Mieux vaut une séance courte que pas de séance.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Vérifier en permanence « si ça marche »</h3>",
+      "Observer ses progrès toutes les trente secondes est précisément le contraire de la pratique. <strong>À la place :</strong> pratiquez, et réservez le bilan au journal de fin de séance. Les progrès en méditation ne se voient pas pendant les séances — ils se remarquent dans la vie.",
+      "<div style=\"margin-top:24px;padding:16px 20px;border-radius:14px;border:1px solid rgba(224,164,88,.3);background:rgba(224,164,88,.08)\"><p style=\"font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--flame);margin-bottom:8px;font-weight:500\">À retenir</p><p style=\"color:var(--ink);line-height:1.65\">La méditation n'élimine pas les pensées et ne produit pas un état spécial. Elle s'évalue sur plusieurs semaines, dans la vie quotidienne, pas à la qualité d'une séance.</p></div>"
     ]
   },
   {
@@ -586,10 +606,15 @@ const GUIDE = [
     teaser:"Pourquoi la respiration agit sur le stress et le sommeil.",
     body:[
       "La respiration est la seule fonction vitale à la fois automatique et contrôlable. C'est cette double nature qui en fait une porte d'entrée vers le système nerveux autonome — celui qui gère le stress, la digestion, le sommeil, et qu'on ne commande pas directement.",
-      "<strong>Le mécanisme central : l'expiration.</strong> À l'inspiration, le rythme cardiaque accélère légèrement ; à l'expiration, il ralentit, sous l'effet du nerf vague. En allongeant l'expiration, vous penchez la balance du côté du système parasympathique — repos, récupération, digestion. C'est pour cela que toutes les techniques de détente partagent le même principe : <strong>expirer plus longtemps qu'on inspire</strong>.",
-      "<strong>Le ventre plutôt que la poitrine.</strong> La respiration thoracique, courte et haute, est celle du stress ; la respiration abdominale, où le diaphragme descend et le ventre se gonfle, est celle du calme. Le corps lit votre respiration comme un signal : respirer calmement informe le cerveau que la situation est sûre.",
-      "<strong>Par le nez.</strong> La respiration nasale filtre, réchauffe et ralentit naturellement l'air. Sauf indication contraire (expiration bouche dans certains exercices), inspirez par le nez.",
-      "<strong>Pour le sommeil</strong> : le soir, l'objectif est de faire redescendre l'activation accumulée dans la journée. Une expiration deux fois plus longue que l'inspiration, pratiquée 3 à 5 minutes au lit, prépare physiologiquement l'endormissement — c'est le principe du 4-7-8 et du « sas avant le sommeil » du mode SOS."
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Le mécanisme central : l'expiration</h3>",
+      "À l'inspiration, le rythme cardiaque accélère légèrement ; à l'expiration, il ralentit, sous l'effet du nerf vague. En allongeant l'expiration, vous penchez la balance du côté du système parasympathique — repos, récupération, digestion. C'est pour cela que toutes les techniques de détente partagent le même principe : <strong>expirer plus longtemps qu'on inspire</strong>.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Ventre ou poitrine ?</h3>",
+      "La respiration thoracique — courte, haute, dans la poitrine — est celle du stress. La respiration abdominale — où le diaphragme descend et le ventre se gonfle — est celle du calme. Le corps lit votre respiration comme un signal : respirer calmement informe le cerveau que la situation est sûre. Posez une main sur le ventre pour vérifier : c'est elle qui doit bouger en premier.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Par le nez</h3>",
+      "La respiration nasale filtre, réchauffe et ralentit naturellement l'air. Elle produit aussi du monoxyde d'azote, un vasodilatateur qui améliore l'oxygénation. Sauf indication contraire (expiration bouche dans certains exercices), inspirez par le nez.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Pour le sommeil</h3>",
+      "Le soir, l'objectif est de faire redescendre l'activation accumulée dans la journée. Une expiration deux fois plus longue que l'inspiration, pratiquée 3 à 5 minutes au lit, prépare physiologiquement l'endormissement. C'est le principe du 4-7-8 et du sas avant le sommeil disponibles dans le module SOS.",
+      "<div style=\"margin-top:24px;padding:16px 20px;border-radius:14px;border:1px solid rgba(224,164,88,.3);background:rgba(224,164,88,.08)\"><p style=\"font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--flame);margin-bottom:8px;font-weight:500\">À retenir</p><p style=\"color:var(--ink);line-height:1.65\">Expirer plus longtemps qu'on inspire active directement le frein du système nerveux. Disponible partout, à tout moment, sans équipement.</p></div>"
     ]
   },
   {
@@ -597,10 +622,15 @@ const GUIDE = [
     title:"D'où vient ce programme",
     teaser:"Le MBSR et ce que dit la recherche.",
     body:[
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Le protocole MBSR</h3>",
       "Ce programme s'inspire du <strong>MBSR</strong> (Mindfulness-Based Stress Reduction), protocole de huit semaines créé en 1979 par Jon Kabat-Zinn à la faculté de médecine du Massachusetts. C'est le programme de méditation le plus étudié au monde, utilisé en milieu hospitalier pour la gestion du stress, de la douleur chronique et de l'anxiété.",
-      "Sa structure est reprise ici : progression sur huit semaines, une pratique centrale par semaine (souffle, scan corporel, observation des pensées et des émotions…), pratique quotidienne courte plutôt que séances rares et longues, et intégration progressive dans la vie quotidienne.",
-      "Les recherches sur la méditation de pleine conscience indiquent des effets mesurables sur le stress perçu, les symptômes anxieux et la qualité du sommeil, avec un niveau de preuve correct sans être miraculeux. Deux honnêtetés s'imposent : les effets demandent une pratique régulière de plusieurs semaines, et la méditation complète — sans remplacer — un suivi médical ou psychologique quand il est nécessaire.",
-      "Ce qui est ajouté au socle MBSR dans cette application : un module de respiration physiologique (cohérence cardiaque, 4-7-8), un mode SOS pour les situations aiguës, et des mécaniques de routine issues de la recherche sur les habitudes (ancrage, chaîne de régularité, règle des deux minutes)."
+      "Sa structure est reprise ici : progression sur huit semaines, une pratique centrale par semaine, pratique quotidienne courte plutôt que séances rares et longues, et intégration progressive dans la vie quotidienne via la pratique informelle.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Ce que dit la recherche</h3>",
+      "Les études sur le MBSR indiquent des effets mesurables sur le stress perçu, les symptômes anxieux et la qualité du sommeil, avec un niveau de preuve solide — sans être miraculeux. Deux honnêtetés s'imposent : les effets demandent une pratique régulière de plusieurs semaines, et ils varient selon les individus.",
+      "La méditation complète — sans remplacer — un suivi médical ou psychologique quand il est nécessaire. Si vous traversez une période de détresse intense, combiner les deux est plus efficace que choisir l'un ou l'autre.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Ce qui a été adapté dans cette application</h3>",
+      "Au socle MBSR ont été ajoutés : un module de respiration physiologique (cohérence cardiaque, 4-7-8, respiration carrée), un mode SOS pour les situations aiguës, et des mécaniques de routine issues de la recherche sur les habitudes — ancrage comportemental, chaîne de régularité, règle des deux minutes.",
+      "<div style=\"margin-top:24px;padding:16px 20px;border-radius:14px;border:1px solid rgba(224,164,88,.3);background:rgba(224,164,88,.08)\"><p style=\"font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--flame);margin-bottom:8px;font-weight:500\">À retenir</p><p style=\"color:var(--ink);line-height:1.65\">Le MBSR est le programme de méditation le plus documenté scientifiquement. Ses effets sont réels et mesurables — à condition d'une pratique régulière sur plusieurs semaines.</p></div>"
     ]
   },
   {
@@ -608,11 +638,70 @@ const GUIDE = [
     title:"La pratique informelle",
     teaser:"Méditer sans s'asseoir : les gestes du quotidien.",
     body:[
-      "La pratique « formelle » (les séances) entraîne l'attention ; la pratique « informelle » la déploie dans la vie réelle. C'est elle qui transforme le quotidien.",
-      "<strong>Une activité ordinaire en pleine conscience par jour.</strong> Choisissez un geste routinier — la douche, le premier café, la vaisselle, le trajet à pied — et faites-le en y étant vraiment : sensations, gestes, sons, odeurs. Sans podcast, sans téléphone, sans planifier la suite.",
-      "<strong>Les transitions comme rappels.</strong> Avant de démarrer la voiture, avant d'ouvrir une réunion, avant de déverrouiller le téléphone : une respiration consciente. Ces micro-pauses cousues dans la journée comptent autant que la séance du matin.",
-      "<strong>Manger les premières bouchées en conscience.</strong> Pas tout le repas — les trois premières bouchées : goût, texture, température. Un entraînement discret et quotidien.",
-      "<strong>L'écoute comme pratique.</strong> Dans une conversation, remarquez le moment où vous préparez votre réponse au lieu d'écouter. Revenez à la voix de l'autre comme vous revenez au souffle. C'est exactement le même geste mental."
+      "La pratique formelle (les séances) entraîne l'attention ; la pratique informelle la déploie dans la vie réelle. C'est elle qui transforme le quotidien — et dans le protocole MBSR original, elle représente la moitié du travail.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Les gestes ordinaires</h3>",
+      "<strong>Une activité ordinaire en pleine conscience par jour.</strong> Choisissez un geste routinier — la douche, le premier café, la vaisselle, le trajet à pied — et faites-le en y étant vraiment : sensations, gestes, sons, odeurs. Sans podcast, sans téléphone, sans planifier la suite. L'intention informelle du jour, affichée sur l'accueil, vous propose un point de départ.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Les moments de friction — les plus utiles</h3>",
+      "Les moments de confort sont faciles. Les plus précieux sont ceux où la pratique résiste : dans un métro bondé, avant une réunion difficile, au moment de déverrouiller le téléphone par automatisme. <strong>Trois respirations avant d'ouvrir une app.</strong> Remarquer la tension dans les épaules avant d'entrer en réunion. Observer l'impulsion du scroll sans la suivre immédiatement. Ces micro-pauses dans les moments de friction sont celles qui entraînent le plus efficacement l'espace entre stimulus et réaction.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Les transitions comme rappels</h3>",
+      "Avant de démarrer la voiture, avant d'ouvrir une réunion, avant de déverrouiller le téléphone : une respiration consciente. Ces micro-pauses cousues dans la journée ne s'ajoutent pas à votre emploi du temps — elles habitent ce qui existe déjà.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">L'écoute comme pratique</h3>",
+      "Dans une conversation, remarquez le moment où vous préparez votre réponse au lieu d'écouter. Revenez à la voix de l'autre comme vous revenez au souffle en séance. C'est exactement le même geste mental — et l'un des transferts les plus concrets de la pratique formelle vers la vie réelle.",
+      "<div style=\"margin-top:24px;padding:16px 20px;border-radius:14px;border:1px solid rgba(224,164,88,.3);background:rgba(224,164,88,.08)\"><p style=\"font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--flame);margin-bottom:8px;font-weight:500\">À retenir</p><p style=\"color:var(--ink);line-height:1.65\">La pratique informelle ne s'ajoute pas à la journée — elle se glisse dans ce qui existe déjà. Les moments de friction sont les plus utiles.</p></div>"
+    ]
+  },
+  {
+    id:"douleur",
+    title:"Quand ça fait mal",
+    teaser:"Gérer les douleurs physiques en séance sans abandonner.",
+    body:[
+      "La douleur est l'une des premières raisons d'abandon, souvent parce qu'on croit qu'il faut la supporter en silence. Ce n'est pas le cas. Distinguer les types de douleur et savoir quoi faire change tout.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Douleur de tension vs. signal d'alarme</h3>",
+      "<strong>La douleur de tension</strong> — une gêne dans le bas du dos, un engourdissement dans les jambes, une raideur dans les épaules — est normale au début. Elle signale une posture inhabituelle ou des tensions chroniques que vous ne notiez pas avant. Observer cette douleur avec curiosité (où est-elle exactement ? comment évolue-t-elle ?) est une pratique en soi, et elle se dissout souvent quand on lui prête attention sans résistance.",
+      "<strong>Le signal d'alarme</strong> — une douleur vive, articulaire, qui irradie — mérite qu'on l'écoute. Changer de position immédiatement. Si elle persiste en dehors des séances, consulter.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Adapter la position</h3>",
+      "Il n'y a pas de hiérarchie entre les positions. Si la position assise génère des douleurs récurrentes, passez à la chaise ou allongez-vous. Si le sol est difficile pour les genoux, un coussin épais sous les fesses change tout. La bonne position est celle qui se tient sans douleur pendant la durée de la séance.",
+      "<strong>Quelques adaptations pratiques :</strong> dos douloureux au sol → asseyez-vous dos au mur ou allongez-vous. Genoux sensibles au sol → posture sur chaise. Nuque raide → inclinez légèrement le menton vers la poitrine.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Bouger est autorisé</h3>",
+      "Ajuster sa position en cours de séance n'interrompt pas la méditation — au contraire. Bougez consciemment : sentez la nouvelle position s'installer, observez le soulagement ou la persistance de la gêne. Ce geste attentionné est de la pleine conscience.",
+      "Ce qui interrompt la pratique : lutter contre la douleur en serrant les dents, ou rester dans une position douloureuse par principe. La méditation n'est pas un concours d'endurance.",
+      "<div style=\"margin-top:24px;padding:16px 20px;border-radius:14px;border:1px solid rgba(224,164,88,.3);background:rgba(224,164,88,.08)\"><p style=\"font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--flame);margin-bottom:8px;font-weight:500\">À retenir</p><p style=\"color:var(--ink);line-height:1.65\">Observer la douleur est une pratique. La subir n'en est pas une. Si ça fait mal : bougez, adaptez, changez de position. La bonne posture est celle qui tient sans souffrir.</p></div>"
+    ]
+  },
+  {
+    id:"progres",
+    title:"Comment savoir qu'on progresse ?",
+    teaser:"Les vrais signes d'une pratique qui fonctionne.",
+    body:[
+      "Les progrès en méditation sont presque invisibles pendant les séances. Ils apparaissent d'abord ailleurs — dans la vie, dans les réactions, dans le corps — souvent sans qu'on les relie à la pratique. C'est ce qui génère le doute.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Ce que vous ne verrez pas</h3>",
+      "Pas de « click », de révélation ou de sérénité permanente. Les séances resteront parfois agitées jusqu'à la semaine 8. La qualité d'une séance n'est pas un indicateur de progrès. Les semaines difficiles entraînent autant que les semaines fluides.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Les vrais signes — dans la vie</h3>",
+      "Ce sont ces petits écarts qui signalent que quelque chose change : <strong>un moment de recul</strong> avant de répondre à un message irritant, là où vous auriez réagi immédiatement avant. <strong>Un agacement qui retombe</strong> plus vite qu'avant, sans que vous ayez rien « fait ». <strong>Un endormissement plus facile</strong>, ou un réveil moins brutal. <strong>Remarquer que vous êtes distrait</strong> — sans l'avoir cherché — plutôt que de l'être sans le savoir. Ce dernier point est central : la conscience de la distraction est le signe que l'attention s'entraîne.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Le calendrier des effets</h3>",
+      "Les premières semaines, les effets sont subtils et intermittents — un moment de calme, une réaction légèrement différente. Vers la semaine 4, une familiarité avec la pratique s'installe. Entre la semaine 6 et la fin du programme, les transferts dans la vie quotidienne deviennent plus nets et plus fréquents. Ce calendrier varie selon les personnes, mais la direction est constante : les bénéfices arrivent en dehors des séances.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Ce que le journal peut révéler</h3>",
+      "Relisez vos entrées de journal toutes les deux semaines. Regardez l'évolution des humeurs avant/après séance, les notes que vous avez laissées. Ce qui semble insignifiant semaine 2 prend souvent du sens semaine 6. Le journal ne mesure pas la qualité de vos séances — il rend visible une trajectoire que vous ne percevez pas au quotidien.",
+      "<div style=\"margin-top:24px;padding:16px 20px;border-radius:14px;border:1px solid rgba(224,164,88,.3);background:rgba(224,164,88,.08)\"><p style=\"font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--flame);margin-bottom:8px;font-weight:500\">À retenir</p><p style=\"color:var(--ink);line-height:1.65\">Les progrès n'apparaissent pas pendant les séances, mais entre elles. Un moment de recul, une réaction qui change, un sommeil qui s'améliore — ce sont les bons indicateurs.</p></div>"
+    ]
+  },
+  {
+    id:"jours-difficiles",
+    title:"Les jours difficiles",
+    teaser:"Pratiquer quand l'esprit ne veut pas — et c'est justement là.",
+    body:[
+      "Certains jours, l'esprit est trop agité, trop chargé, trop résistant pour la séance habituelle. Ces jours-là sont les plus tentants pour sauter la pratique. Ils sont aussi, souvent, les plus utiles pour s'entraîner.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Réduire sans culpabilité</h3>",
+      "Un jour difficile n'appelle pas une séance de 15 minutes — il appelle une séance de 5. La version courte de chaque séance existe précisément pour ça. Trois respirations abdominales comptent. Deux minutes de scan corporel comptent. La règle des deux minutes s'applique ici : ce qui compte est de ne pas casser la chaîne.",
+      "Résistance n'est pas contre-indication. Ressentir qu'on n'a pas envie de méditer n'est pas un signe d'incompatibilité — c'est l'état d'esprit le plus commun avant de commencer. La résistance disparaît presque toujours dans les deux premières minutes.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Changer de technique selon l'état</h3>",
+      "<strong>Esprit très agité, pensées qui s'emballent</strong> → privilégiez une technique physiologique plutôt que la méditation assise. La cohérence cardiaque (5-5, module Respiration) ou l'ancrage 5-4-3-2-1 (SOS) ramènent l'attention au corps sans demander d'observer les pensées — ce qui peut être contre-productif quand elles sont très intenses.",
+      "<strong>Fatigue extrême</strong> → allongez-vous et faites le scan corporel. Si vous vous endormez, vous en aviez besoin. Ce n'est pas un échec.",
+      "<strong>Tristesse ou anxiété forte</strong> → ne forcez pas l'observation des émotions (semaine 6). Revenez à quelque chose de plus ancré : les sensations du souffle, le contact des pieds au sol, les sons autour de vous. La pratique sensorielle est plus stabilisante que la pratique émotionnelle dans ces moments.",
+      "<h3 style=\"margin-top:28px;margin-bottom:8px;font-family:var(--font-d)\">Quand sortir de la séance</h3>",
+      "Si des émotions très intenses remontent en séance — un chagrin difficile à contenir, une anxiété qui monte — il est toujours juste d'ouvrir les yeux, de poser les pieds au sol et de sortir de la séance. Ce n'est pas un abandon : c'est écouter ses limites du moment. Reprenez plus tard, ou le lendemain.",
+      "Si ce type d'émergence est régulier et intense, la méditation en solo a ses limites — un accompagnement professionnel permet de travailler ces couches plus en sécurité.",
+      "<div style=\"margin-top:24px;padding:16px 20px;border-radius:14px;border:1px solid rgba(224,164,88,.3);background:rgba(224,164,88,.08)\"><p style=\"font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--flame);margin-bottom:8px;font-weight:500\">À retenir</p><p style=\"color:var(--ink);line-height:1.65\">Les jours difficiles : faites moins, pas rien. Cinq minutes valent mieux que zéro. Si l'esprit s'emballe, passez à une technique physiologique plutôt que de forcer l'observation.</p></div>"
     ]
   }
 ];

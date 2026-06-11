@@ -578,7 +578,10 @@ route('/guide', (id) => {
       <a class="back" href="#/guide">← Guide</a>
       <p class="eyebrow">Bonnes pratiques</p>
       <h1>${esc(a.title)}</h1>
-      <div class="article">${a.body.map(p => `<p>${p}</p>`).join('')}</div>`;
+      <div class="article">${a.body.map(p => {
+        const t = p.trim();
+        return (t.startsWith('<h3') || t.startsWith('<div')) ? t : `<p>${p}</p>`;
+      }).join('')}</div>`;
     return;
   }
   view.innerHTML = `
